@@ -38,6 +38,9 @@ ul {
 li {
     background-color: #dfd9d9;
     padding: 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 .cartul {
     position: absolute;
