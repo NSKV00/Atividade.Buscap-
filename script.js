@@ -11,39 +11,8 @@ function product(){
     
     })
 }product()
-const carrinho = [];
-// const carrinho = []
-// function mCarrinho(){
-//     const ul = document.querySelector("ul")
-//     data.forEach((data,items)=>{
-//         ul.insertAdjacentHTML("beforeend",`
-//             <li>
-//                 <fieldset>
-//                     <img src="TV.jpeg" alt="TV">
-//                     <img src="TV.jpeg" alt="TV">
-//                     <img src="TV.jpeg" alt="TV">
-//                 </fieldset>
-//                 <img src="TV.jpeg" alt="TV">
-//                 <div>
-//                     <p>${product.name}</p>
-//                     <div>
-//                         <div>
-//                             <p>${product.installment}x R$${product.installmentValua} sem juros</p>
-//                         <p>ou ${product.value} á vista</p>
-//                         </div>
-//                         <button id="${product.id}add">Adicionar ao carrinho</button>
-//                     </div>
-//                 </div>
-//             </li>`)
-//             const button = document.getElementById(`${product.id}add`)
-//             button.addEventListener("click",()=>{
-//             console.log("click",product)
-//             carrinho.push(product)
-//             montarCarrinho(carrinho)
-//         })
-//     })
-// mCarrinho()
 
+const carrinho = [];
 montarProdutos()
 function montarProdutos(){
 const ul = document.querySelector("ul")
@@ -71,6 +40,7 @@ const ul = document.querySelector("ul")
         button.addEventListener("click",()=>{
             console.log("click",produto.product)
             carrinho.push(produto.product)
+            atualizarContadorCarrinho()
             //mCarrinho(carrinho)
         })
     })
@@ -82,7 +52,6 @@ function mCarrinho(){
     carrinho.forEach((produto)=>{
         ul.insertAdjacentHTML("afterbegin",`
             <li>
-            
             <img src="TV.jpeg" alt="TV">
             <div>
                 <p>${produto.name}</p>
@@ -103,32 +72,7 @@ function mCarrinho(){
            })
     })
 }
-// function montarCarrinho(carrinho=[]){
-//     const ul = document.querySelector(".carrinho")
-//     ul.innerHTML = ""
-//     carrinho.forEach((items)=>{
-//         ul.insertAdjacentHTML("afterbegin",`
-//             <li>
-//                 <fieldset>
-//                     <img src="TV.jpeg" alt="TV">
-//                     <img src="TV.jpeg" alt="TV">
-//                     <img src="TV.jpeg" alt="TV">
-//                 </fieldset>
-//                 <img src="TV.jpeg" alt="TV">
-//                 <div>
-//                     <p>${product.name}</p>
-//                     <div>
-//                         <div>
-//                             <p>${product.installment}x R$${product.installmentValua} sem juros</p>
-//                         <p>ou ${product.value} á vista</p>
-//                         </div>
-//                         <button id="${product.id}add">Adicionar ao carrinho</button>
-//                     </div>
-//                 </div>
-//             </li>`)
-//     })
-    
-// }
+
 function removerItemDoCarrinho(product){
     console.log(product,"produto")
     const index = carrinho.findIndex((cart)=>{
@@ -136,6 +80,7 @@ function removerItemDoCarrinho(product){
     })
     carrinho.splice(index,1)
     mCarrinho(carrinho)
+    atualizarContadorCarrinho()
 }
 
 
@@ -164,3 +109,9 @@ function openCarrinho(){
     })
 }
 openCarrinho()
+
+function atualizarContadorCarrinho() {
+    const contador = document.getElementById("cartCount");
+    contador.textContent = carrinho.length;
+    contador.style.display = carrinho.length > 0 ? "inline-block" : "none";
+}
