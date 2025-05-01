@@ -61,9 +61,9 @@ function mCarrinho(){
                     <p>ou R$${produto.price.value} á vista</p>
                     </div>
                     <button id="${produto.id}cancel">Remover do carrinho</button>
+                    </div>
                 </div>
-            </div>
-        </li>`)
+            </li>`)
            const button = document.getElementById(`${produto.id}cancel`)
            button.addEventListener("click",(e)=>{
                 console.log(e,"event")
@@ -88,24 +88,23 @@ function openCarrinho(){
     const button = document.querySelector(".carrrinhobtn")
     button.addEventListener("click",()=>{
         console.log("carrinho")
+        const header = document.querySelector("header")
         const ulcart = document.querySelector(".cartul")
-        if(ulcart){
-            ulcart.remove()
-        }else{
-            const header = document.querySelector("header")
+        
+        if(!ulcart){
             header.insertAdjacentHTML("beforeend",`
-             <ul class="cartul">
+                <ul class="cartul">
+
                 </ul>
             `)
-            mCarrinho()
+        }
+        mCarrinho()
             // const ulcart = document.querySelector(".cartul")
             // carrinho.forEach((cart)=>{
             //     ulcart.insertAdjacentHTML("beforeend",`
             //         <li>${cart.name}</li>
             //         `)
-            // })
-        }
-        
+            // })    
     })
 }
 openCarrinho()
